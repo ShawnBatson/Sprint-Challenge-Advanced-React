@@ -1,32 +1,42 @@
 import React from "react";
-import "./App.css";
+import axios from "axios";
+import NavBar from "./Components/NavBar";
+// import Display from "./Components/Display";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      players: []
+      players: [],
+      name: "",
+      country: ""
     };
   }
-
   componentDidMount() {
-    fetch("http://localhost:5000/api/players")
-      .then(res => res.json())
-      .then(players => this.setState({ players }))
-      .catch(err => console.log("No dogs :(", err));
-    console.log("componentDidMount running");
-    console.log(this.state);
+    console.log("component mounted");
+    axios
+      .get("http://localhost:5000/api/players")
+      .then(res => {
+        this.setState({ players: res.data });
+        console.log("inside mount", this.state.players);
+      })
+      .catch(err => console.log("No players", err));
   }
 
   render() {
     console.log("rendering...");
     return (
       <div className="App">
+        <NavBar />
         <div className="players">
           <div>
-            {this.state.players.map(player => (
-              <img width="200" src={player} key={player} alt={player} />
-            ))}
+            {this.state.players.map(players => {
+              return (
+                <p>
+                  {players.name}, from {players.country}
+                </p>
+              );
+            })}
           </div>
         </div>
       </div>
