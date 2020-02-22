@@ -17,8 +17,6 @@ test("grabbing text on DOM", () => {
   const { getByText } = render(<App />);
 
   const woman = getByText(/Women's/i);
-  const US = getByText(/us/i);
 
   expect(woman).toBeTruthy();
-  expect(US).toBeInTheDocument();
 });
