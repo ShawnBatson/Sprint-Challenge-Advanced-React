@@ -36,10 +36,11 @@
   display: flex;
   justify-content: center;
   background: papayawhip;
+
   border-radius: 50px;
   border: 1px solid black;
   height: 20px;
-  position: relative;
+  /* position: relative; */
   width: 40px;
 }
 
@@ -60,4 +61,9 @@
 .dark-mode {
   color: #fff;
   background-color: #313843;
+}
+.dead-center {
+  display: flex;
+  justify-content: center;
+  margin: 5%;
 }
